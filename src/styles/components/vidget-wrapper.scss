@@ -1,0 +1,23 @@
+.vidget-wrapper {
+  @include vp--1023 {
+    padding: 0 20px;
+
+    h2 {
+      font-weight: 300;
+      font-size: 40px;
+      line-height: 120%;
+    }
+
+    p:first-of-type {
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 100%;
+    }
+    
+    p:last-of-type {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 23px;
+    }
+  }
+}

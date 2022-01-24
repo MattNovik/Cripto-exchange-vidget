@@ -1,0 +1,27 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@font-face {
+    font-style: normal;
+    font-weight: 400;
+    font-family: "Volkorn";
+  
+    font-display: swap;
+    src:
+      url("../fonts/Vollkorn-Regular.woff2") format("woff2"),
+      url("../fonts/Vollkorn-Regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-style: normal;
+    font-weight: 700;
+    font-family: "Volkorn";
+  
+    font-display: swap;
+    src:
+      url("../fonts/Vollkorn-Bold.woff2") format("woff2"),
+      url("../fonts/Vollkorn-Bold.woff") format("woff");
+  }
