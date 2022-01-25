@@ -1,5 +1,8 @@
 <template lang='pug'>
 .vidget-wrapper.flex.flex-col.justify-center.items-start.max-w-960.w-full
+  .preloader-wrapper
+    span.preloader
+      span.preloader__center
   h2.text-5xl.mb-4 Crypto Exchange
   p.text-xl.mb-16 Exchange fast and easy
   .inputs-wrapper.flex.flex-1.mb-8.gap-x-8.w-full
@@ -55,6 +58,10 @@ export default {
             if (this.firstinput < this.minAmount) {
               this.estimated = '------';
               console.log('not enough');
+              const buttonError = document.querySelector('.button-error');
+              if (!buttonError.classList.contains('error')) {
+                buttonError.classList.add('error');
+              }
             } else if (this.minAmount === null) {
               const buttonError = document.querySelector('.button-error');
               if (!buttonError.classList.contains('error')) {
@@ -62,14 +69,18 @@ export default {
               }
               throw new Error('this pair is disabled now');
             } else {
+              const buttonError = document.querySelector('.button-error');
+              if (buttonError.classList.contains('error')) {
+                buttonError.classList.remove('error');
+              }
               axios
                 .get(this.ask)
                 .then(response => {
                   this.estimated = response.data.estimatedAmount;
                   if (this.estimated === null) {
                     const buttonError = document.querySelector('.button-error');
-                    if (buttonError.classList.contains('error')) {
-                      buttonError.classList.remove('error');
+                    if (!buttonError.classList.contains('error')) {
+                      buttonError.classList.add('error');
                     }
                     throw new Error('this pair is disabled now');
                   }
@@ -119,13 +130,7 @@ export default {
         .finally(() => {
         });
     },
-    change: function() {
-    }
-  },
-  mounted() {
 
-  },
-  props: {
   },
 }
 </script>

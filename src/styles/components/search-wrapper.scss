@@ -74,6 +74,8 @@
     transform: translate(0, 100%);
     width: 100%;
     height: auto;
+    max-height: 300px;
+    overflow-y: auto;
     border: solid 1px#C1D9E6;
     border-top: solid 1px #E3EBEF;
     border-radius: 0 0 5px 5px;

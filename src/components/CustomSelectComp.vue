@@ -116,13 +116,8 @@ export default {
       let newList = this.list.filter(function (el) {
         return el.name.toLowerCase().includes(valueElem);
       });
-      this.options = newList.slice(0,3);
+      this.options = newList.slice(0);
     }
-  },
-  computed: {
-  },
-  created() {
-    
   },
   mounted() {
     axios
@@ -133,17 +128,19 @@ export default {
         this.name = this.firstElem.ticker,
         this.image = this.firstElem.image,
         this.list = response.data,
-        this.options = this.list.slice(1,4),
-        this.options.forEach((item) => {
-          item.ariaSelected = false;
-        }),
-        this.options[0].ariaSelected = true
+        this.options = this.list.slice(1)
         ))
       .catch(error => {
         console.log(error);
         this.errored = true;
       })
       .finally(() => {
+        const vidget = document.querySelector('.vidget-wrapper');
+        if (!vidget.classList.contains('first-load')) {
+          vidget.classList.add('first-load');
+        } else {
+          vidget.classList.add('loaded');
+        }
       });
   }
 }
