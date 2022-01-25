@@ -1,10 +1,10 @@
 .address-wrapper {
     @include vp--1023 {
       flex-direction: column;
-    }
 
-    &__input-wrapper {
-      flex-direction: column;
-      row-gap: 16px;
+      &__input-wrapper {
+        flex-direction: column;
+        row-gap: 16px;
+      }
     }
 }
