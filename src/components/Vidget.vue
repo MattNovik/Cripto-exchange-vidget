@@ -24,7 +24,7 @@
     .address-wrapper__input-wrapper.flex.gap-x-8
       input.address-wrapper__input.w-full.h-15.bg-alice-blue.rounded-lg.border-solid.border-pattens-blue.border.p-4
       button.button-error.text-lg.pt-4.pb-4.pl-14.pr-14.bg-deep-sky-blue.text-white.rounded-lg.relative Exchange
-        span.button-error__error This pair is disabled now
+        span.button-error__error {{ errorText }}
 </template>
 
 <script>
@@ -38,6 +38,7 @@ export default {
   },
   data () {
     return {
+      errorText: null,
       ask: null,
       name: 'btc',
       secondEx: 'btc',
@@ -61,17 +62,20 @@ export default {
               const buttonError = document.querySelector('.button-error');
               if (!buttonError.classList.contains('error')) {
                 buttonError.classList.add('error');
+                this.errorText = "not enough";
               }
             } else if (this.minAmount === null) {
               const buttonError = document.querySelector('.button-error');
               if (!buttonError.classList.contains('error')) {
                 buttonError.classList.add('error');
+                this.errorText = "This pair is disable now";
               }
               throw new Error('this pair is disabled now');
             } else {
               const buttonError = document.querySelector('.button-error');
               if (buttonError.classList.contains('error')) {
                 buttonError.classList.remove('error');
+                this.errorText = "This pair is disable now";
               }
               axios
                 .get(this.ask)
@@ -82,6 +86,7 @@ export default {
                     if (!buttonError.classList.contains('error')) {
                       buttonError.classList.add('error');
                     }
+                    this.errorText = "This pair is disable now";
                     throw new Error('this pair is disabled now');
                   }
                   })
@@ -97,6 +102,7 @@ export default {
           if (!buttonError.classList.contains('error')) {
             buttonError.classList.add('error');
           }
+          this.errorText = "This pair is disable now";
           this.errored = true;
         })
         .finally(() => {
